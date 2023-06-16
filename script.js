@@ -6,16 +6,13 @@ const toggleCheckNames = {
 
 setInterval(() => {
 	const element = document.getElementById("yt-shorts-toggle");
-	console.log('extension')
 	if (window.location.href.includes("https://www.youtube.com/feed/subscriptions")) {
 		if (element) {
 			element.style.display = "block";
 			toggleViews(element.value);
-			console.log('here')
 		} else {
 			createToggleButton();
 			toggleViews("Show only Videos");
-			console.log('there')
 		}
 	} else {
 		if(element) element.remove()
@@ -54,7 +51,7 @@ function toggleEventListener(element) {
 
 function toggleViews(condition) {
 	const videoTiles = document.getElementsByClassName(
-		"style-scope ytd-grid-renderer"
+		"style-scope ytd-rich-grid-renderer"
 	);
 	for (let tile of videoTiles) {
 		tile.style.display = "flex";
@@ -64,7 +61,7 @@ function toggleViews(condition) {
 
 	for (let tile of videoTiles) {
 		if (
-			tile?.children?.[0]?.children?.[1]?.children?.[1]?.children?.[0]?.children[0]?.children?.[1]?.href?.includes(
+			tile?.children?.[0]?.children?.[1]?.children?.[0]?.children?.[0]?.children?.[0]?.children?.[1]?.children?.[0]?.children?.[1].href?.includes(
 				toggleCheckNames[condition]
 			)
 		) {
